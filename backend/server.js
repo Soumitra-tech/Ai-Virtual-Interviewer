@@ -4,7 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import User from "./models/user.js";
+import User from "./models/User.js";
 
 dotenv.config();
 const app = express();
@@ -30,7 +30,9 @@ mongoose.connect(process.env.MONGO_URI, {
 
 // ✅ Register
 app.post("/api/auth/register", async (req, res) => {
+  console.log("REQ BODY:", req.body); // 👈 add this
   const { email, password, role } = req.body;
+
   if (!email || !password || !role) {
     return res.status(400).json({ message: "Missing required fields" });
   }
@@ -48,7 +50,7 @@ app.post("/api/auth/register", async (req, res) => {
       user: { email: user.email, role: user.role }
     });
   } catch (err) {
-    console.error("❌ Registration Error:", err.message);
+    console.error("❌ Registration Error:", err);
     res.status(500).json({ message: "Registration failed", error: err.message });
   }
 });
@@ -96,4 +98,5 @@ app.get("/api/questions", (req, res) => {
 
 // ✅ Start Server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Backend running at http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+

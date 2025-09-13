@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export default function SignupPage() {
   const { signup } = useAuth();
   const navigate = useNavigate();
-  const [name, setName] = useState("");
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("candidate");
@@ -13,7 +13,7 @@ export default function SignupPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await signup({ name, email, password, role });
+      await signup({  email, password, role });
       navigate("/login");
     } catch (err) {
       alert("Signup failed: " + (err.response?.data?.message || "Unknown error"));
@@ -33,14 +33,7 @@ export default function SignupPage() {
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <input
-            type="text"
-            placeholder="Full Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-            className="w-full p-3 rounded-lg bg-gray-900 border border-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-          />
+          
 
           <input
             type="email"

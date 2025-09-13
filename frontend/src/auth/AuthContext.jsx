@@ -13,10 +13,14 @@ export const AuthProvider = ({ children }) => {
     return res.data.user;
   };
 
-  const signup = async (email, password, role) => {
-    const res = await axios.post("http://localhost:5000/api/auth/register", { email, password, role });
-    return res.data.user;
-  };
+  const signup = async ({ email, password, role }) => {
+  const res = await axios.post("http://localhost:5000/api/auth/register", {
+    email,
+    password,
+    role,
+  });
+  return res.data.user;
+};
 
   const logout = () => {
     setUser(null);
