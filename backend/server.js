@@ -11,7 +11,11 @@ const app = express();
 
 // ✅ Middleware
 app.use(cors({
-  origin: "http://localhost:5173", // Adjust if your frontend runs elsewhere
+  origin: [
+  "http://localhost:5173",
+  "https://ai-virtual-interviewer.vercel.app"
+]
+,
   credentials: true
 }));
 app.use(express.json());
@@ -98,5 +102,4 @@ app.get("/api/questions", (req, res) => {
 
 // ✅ Start Server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
+app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
