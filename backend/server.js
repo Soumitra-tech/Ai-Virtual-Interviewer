@@ -12,10 +12,9 @@ const app = express();
 // ✅ Middleware
 app.use(cors({
   origin: [
-  "http://localhost:5173",
-  "https://ai-virtual-interviewer.vercel.app"
-]
-,
+    "http://localhost:5173",          // local dev
+    "https://ai-virtual-interviewer.vercel.app" // ✅ your Vercel deployed frontend
+  ],
   credentials: true
 }));
 app.use(express.json());
